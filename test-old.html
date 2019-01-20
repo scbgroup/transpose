@@ -1,0 +1,84 @@
+<DOCTYPE! html>
+<head>
+
+
+<title>Testing</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$("#dialog").dialog({
+	autoOpen: false,
+	buttons: { 
+	    Ok: function() {
+	        $("#nameentered").text($("#name").val());
+	        $(this).dialog("close");
+	   },
+	    Cancel: function () {
+	        $(this).dialog("close");
+	    }
+	}
+	});
+	
+	$("#open").click(function () {
+	$("#dialog").dialog("open");
+	});
+</script>
+
+<script>
+
+   var transpose = function ()  {    
+        var test=clipboardData.getData('Text')
+        var s = prompt("Enter data in columns:");
+        var s = s.replace(/(?:\r\n|\r|\n)/g, '\n');
+        var s = s.replace(/(?:\t)/g, ',');
+        
+        // trim off trailing newline
+        if (s[s.length-1] = "\n") {
+            s = s.slice (0, -1);
+            }
+                    
+        var sa = s.split('\n');
+        for (var ii = 0; ii < sa.length; ii++) {
+            sa[ii] = sa[ii].split(',');
+            }
+    
+        //https://stackoverflow.com/questions/17428587/transposing-a-2d-array-in-javascript#17428705
+        var ta = sa[0].map(function(col, i) { 
+            return sa.map(function(row) { 
+                return row[i] 
+            })
+        });
+		
+		var ds = [ sa.length, sa[0].length ];
+		var dt = [ ta.length, ta[0].length ];
+		
+		alert([ds,dt]);
+
+        //alert(s);
+		
+        for (var ii = 0; ii < ta.length; ii++) {
+            ta[ii] = ta[ii].join(',');
+            }
+        t = ta.join('\n');
+        alert(t);
+        };
+
+</script>
+
+</head>
+
+<main>
+
+<script>transpose()</script>
+
+<div id="dialog">
+    <p>Please enter your data</p>
+    <textarea id="data"></textarea>
+</div>
+
+<label>Name entered: </label>
+<label id="nameentered"></label>
+<br />
+
+
+</main>
