@@ -10,7 +10,7 @@ function(Jupyter) {
         
         var s = s.replace(/(?:\r\n|\r|\n)/g, '\n');
         var s = s.replace(/(?:\t)/g, ',');
-        if (s[s.length-1] = "\n") {
+        if (s[s.length-1] == "\n") {
             s = s.slice (0, -1);
             }
 
